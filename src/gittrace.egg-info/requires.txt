@@ -1,6 +1,0 @@
-rich>=13
-requests>=2.31
-streamlit>=1.32
-
-[dev]
-pytest>=7
