@@ -48,9 +48,6 @@ def build_parser() -> argparse.ArgumentParser:
     ac.add_argument("--model", default=DEFAULT_MODEL)
     ac.add_argument("--ollama-host", default=DEFAULT_HOST)
 
-    ui = sub.add_parser("ui", help="launch the Streamlit web app for this repository")
-    ui.add_argument("--port", type=int, default=8501)
-
     t = sub.add_parser("trace", help="show lineage, testing and deployment provenance of a commit")
     t.add_argument("commit")
     t.add_argument("--json", action="store_true")
@@ -151,12 +148,6 @@ def _dispatch(args, git: Git, store: Store, out: Out) -> int:
             return 1
         out.line(f"Model '{args.model}' is available. No cloud AI is used.")
         return 0
-
-    if cmd == "ui":
-        import subprocess
-        app = Path(__file__).resolve().parent / "webapp_entry.py"
-        return subprocess.call([sys.executable, "-m", "streamlit", "run", str(app), "--server.port", str(args.port),
-                                "--", "--repo", str(git.toplevel)], cwd=str(git.toplevel))
 
     if cmd == "trace":
         idx = ProvenanceIndex(git, args.history_limit)

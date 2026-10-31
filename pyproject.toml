@@ -4,15 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gittrace"
-version = "0.2.0"
-description = "Intelligent Git conflict resolution with testing provenance and a local (Ollama) AI assistant"
+version = "0.3.0"
+description = "Terminal-native Git conflict resolution with testing provenance and a local (Ollama) AI assistant"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 dependencies = [
     "rich>=13",
     "requests>=2.31",
-    "streamlit>=1.32",
 ]
 
 [project.optional-dependencies]

@@ -142,5 +142,5 @@ def test_no_cloud_ai_in_codebase():
     """Hackathon rule: no OpenAI / Anthropic / Gemini SDKs or endpoints anywhere in the shipped code."""
     root = Path(__file__).resolve().parents[1]
     banned = re.compile(r"openai|anthropic|generativelanguage|google\.genai|google-generativeai|api\.mistral|cohere", re.I)
-    for f in list((root / "src").rglob("*.py")) + [root / "app.py", root / "pyproject.toml"]:
+    for f in list((root / "src").rglob("*.py")) + [root / "cli.py", root / "pyproject.toml"]:
         assert not banned.search(f.read_text(encoding="utf-8")), f"cloud AI reference in {f}"
